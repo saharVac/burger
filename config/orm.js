@@ -24,17 +24,15 @@ function printQuestionMarks(num) {
         if (typeof value === "string" && value.indexOf(" ") >= 0) {
           value = "'" + value + "'";
         }
-        // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-        // e.g. {sleepy: true} => ["sleepy=true"]
+        // e.g. {devoured: true} => ["devoured=true"]
         arr.push(key + "=" + value);
       }
     }
   
-    // translate array of strings to a single comma-separated string
     return arr.toString();
   }
   
-  // Object for all our SQL statement functions.
+  // object containing all query methods necessary
   var orm = {
     selectAll: function(tableInput, cb) {
       var queryString = "SELECT * FROM " + tableInput + ";";
@@ -65,7 +63,6 @@ function printQuestionMarks(num) {
         cb(result);
       });
     },
-    // An example of objColVals would be {name: panther, sleepy: true}
     updateOne: function(table, objColVals, condition, cb) {
       var queryString = "UPDATE " + table;
   
@@ -85,5 +82,4 @@ function printQuestionMarks(num) {
     }
   };
   
-  // Export the orm object for the model (cat.js).
-  module.exports = orm;
+module.exports = orm;
